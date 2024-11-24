@@ -136,31 +136,31 @@ std::size_t find(char *array[], std::size_t capacity, char const *str) {
     return closest_index; // Return the index of the closest match
 }
 
-// // Function to read words from a file into an array
-// void read_words_from_file(const char* filename, char** &word_array, std::size_t &num_words, std::size_t width) {
-//     std::ifstream file(filename);
-//     if (!file) {
-//         std::cout << "[ERROR] Could not open file " << filename << std::endl;
-//         return;
-//     }
+// Function to read words from a file into an array
+void read_words_from_file(const char* filename, char** &word_array, std::size_t &num_words, std::size_t width) {
+    std::ifstream file(filename);
+    if (!file) {
+        std::cout << "[ERROR] Could not open file " << filename << std::endl;
+        return;
+    }
 
-//     file >> num_words; // Read the number of words
-//     file.ignore(); // Ignore the newline character
+    file >> num_words; // Read the number of words
+    file.ignore(); // Ignore the newline character
 
-//     word_array = new char*[num_words]; // Allocate memory for the array of word pointers
-//     word_array[0] = new char[num_words * (width + 1)]; // Allocate memory for the first word (with width + 1 for null terminator)
+    word_array = new char*[num_words]; // Allocate memory for the array of word pointers
+    word_array[0] = new char[num_words * (width + 1)]; // Allocate memory for the first word (with width + 1 for null terminator)
 
-//     for (std::size_t k{1}; k < num_words; ++k) {
-//         word_array[k] = (word_array[k - 1] + (width + 1)); // Set up each subsequent word pointer
-//     }
+    for (std::size_t k{1}; k < num_words; ++k) {
+        word_array[k] = (word_array[k - 1] + (width + 1)); // Set up each subsequent word pointer
+    }
 
-//     for (std::size_t k{}; k < num_words; ++k) {
-//         file >> word_array[k]; // Read each word from the file into the array
-//     }
-//     file.close(); // Close the file
-// }
+    for (std::size_t k{}; k < num_words; ++k) {
+        file >> word_array[k]; // Read each word from the file into the array
+    }
+    file.close(); // Close the file
+}
 
-// Function to free the memory allocated for the word array
+Function to free the memory allocated for the word array
 void free_word_array(char** word_array) {
     if (word_array != nullptr) {
         // First delete each string (if any)
